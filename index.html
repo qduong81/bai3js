@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h2> Giải phương trình bậc 2</h2>
+
+    <label for="a">Nhập a:</label>
+    <input type="number" id="a"><br><br>
+
+    <label for="b">Nhập b:</label>
+    <input type="number" id="b"><br><br>
+
+    <label for="c">Nhập c:</label>
+    <input type="number" id="c"><br><br>
+
+    <button onclick="giaiPT()">Giải phương trình</button>
+
+    <p id="ketQua"></p>
+
+    <script>
+        function giaiPT() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const c = parseFloat(document.getElementById("c").value);
+            let ketQua = "";
+
+            if (a === 0) {
+                if (b === 0) {
+                    ketQua = (c === 0) ? "Phương trình vô số nghiệm." : "Phương trình vô nghiệm.";
+                } else {
+                    let x = -c / b;
+                    ketQua = "Phương trình bậc nhất. Nghiệm là x = " + x;
+                }
+            } 
+            else {
+                const delta = b * b - 4 * a * c;
+                if (delta < 0) {
+                    ketQua = "Phương trình vô nghiệm.";
+                } else if (delta === 0) {
+                    const x = -b / (2 * a);
+                    ketQua = "Phương trình có nghiệm kép: x = " + x;
+                } else {
+                    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                    ketQua = "Phương trình có 2 nghiệm phân biệt: x₁ = " + x1 + ", x₂ = " + x2;
+                }
+            }
+
+            document.getElementById("ketQua").textContent = ketQua;
+        }
+    </script>
+</body>
+</html>
